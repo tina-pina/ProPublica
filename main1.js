@@ -29,19 +29,14 @@ for (let i = 0; i < data.results[0].num_results; i++) {
   aTag.target = "_blank";
   tdElem.appendChild(aTag);
 
-  tdElem = document.createElement("td");
-  tdElem.innerHTML = data.results[0].members[i].party;
-  trElem.appendChild(tdElem);
+  let attr_list = ["party", "state", "seniority", "votes_with_party_pct"];
 
-  tdElem = document.createElement("td");
-  tdElem.innerHTML = data.results[0].members[i].state;
-  trElem.appendChild(tdElem);
+  for (let attr of attr_list) {
+    let value = data.results[0].members[i][attr];
+    if (attr === "votes_with_party_pct") value += "%";
 
-  tdElem = document.createElement("td");
-  tdElem.innerHTML = data.results[0].members[i].seniority;
-  trElem.appendChild(tdElem);
-
-  tdElem = document.createElement("td");
-  tdElem.innerHTML = data.results[0].members[i].votes_with_party_pct + "%";
-  trElem.appendChild(tdElem);
+    tdElem = document.createElement("td");
+    tdElem.innerHTML = value;
+    trElem.appendChild(tdElem);
+  }
 }

@@ -9,11 +9,11 @@
   margin-top: 0;
 }
 
-.flex {
+/* .flex {
   display: flex !important;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .table-wrapper-scroll-y {
   display: block;
@@ -23,6 +23,11 @@
 }
 
 img.logo-header {
-  height: 30%;
-  width: 30%;
+  height: 40%;
+  width: 40%;
+}
+
+img.logo-header2 {
+  height: 100%;
+  width: 100%;
 }

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
         crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Senate</title>
 </head>
 
 <body>
@@ -22,8 +22,8 @@
             <div class="row justify-content-md-center w-80">
                 <div class="col-1"></div>
                 <div class="col">
-                    <p class="text-left"><img class="logo-header" src="/Users/christinakoenig/Desktop/ubiqum/bs4/styles/LogoMakr_39WZlC copy.png"
-                            class="fluid" alt="logo"></p>
+                    <p class="text-left"><img class="logo-header" src="resources/images/LogoMakr_39WZlC.png" class="fluid"
+                            alt="logo"></p>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
                     <p class="text-right"><i class="far fa-envelope"></i><a href="info@tgif.net">info@tgif.net</a></p>
@@ -36,7 +36,7 @@
     <div class="container">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
             <span class="navbar-toggler-icon"></span>
@@ -50,8 +50,8 @@
                             Congress 113
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">House</a>
-                            <a class="dropdown-item" href="#">Senate</a>
+                            <a class="dropdown-item" href="house-data.html">House</a>
+                            <a class="dropdown-item" href="senate-data.html">Senate</a>
                         </div>
                     </li>
                 </ul>
@@ -61,7 +61,7 @@
         <div class="jumbotron mb-0">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-3">
-                    <h1>congress</h1>
+                    <h1>Senators</h1>
                 </div>
             </div>
             <div class="row">
@@ -76,6 +76,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 </div>
             </div>
+
             <div class="checkbox d-flex justify-content-between">
                 <div class="checkbox-left">
                     <label class="mr-3 pb-4" for="form-check-label"> Filter by Party</label>
@@ -111,15 +112,27 @@
 
             </div>
 
-            <div class="table-wrapper-scroll-y">
+            <div class="row">
+                <div class="col w-100 table-wrapper-scroll-y">
+                    <table id="senate-data" class="table table-bordered table-striped table-hover table-sm">
+                        <caption>Congress Members</caption>
+                        <thead class="table-secondary text-center">
+                            <tr>
+                                <th>Members</th>
+                                <th>Name</th>
+                                <th>Party</th>
+                                <th>State</th>
+                                <th>Years in Office</th>
+                                <th>% Votes w/Party</th>
+                            </tr>
+                        </thead>
 
-                <table id="senate-data" class="table table-bordered table-striped table-hover table-sm">
-                    <caption>Congress Members</caption>
-                    <!-- <thead id="thead" class="thead-dark col-6">
-                    </thead> -->
-                    <tbody id="senate-body">
-                    </tbody>
-                </table>
+                        <tbody id="senate-body">
+                        </tbody>
+                    </table>
+
+                </div>
+
 
             </div>
 
