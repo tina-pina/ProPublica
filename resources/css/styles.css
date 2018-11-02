@@ -1,0 +1,28 @@
+.jumbotron {
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mb-0 {
+  margin-top: 0;
+}
+
+.flex {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 200px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+img.logo-header {
+  height: 30%;
+  width: 30%;
+}
