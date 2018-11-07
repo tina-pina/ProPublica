@@ -26,7 +26,7 @@
                             alt="logo"></p>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
-                    <p class="text-right"><i class="far fa-envelope"></i><a href="info@tgif.net">info@tgif.net</a></p>
+                    <p class="text-right"><i class="far fa-envelope"></i><a href="mailto:info@tgif.net">info@tgif.net</a></p>
                 </div>
                 <div class="col-1"></div>
 
@@ -78,38 +78,31 @@
             </div>
 
             <div class="checkbox d-flex justify-content-between">
-                <div class="checkbox-left">
+                <div class="checkbox-left" onclick=filterPartyCheckboxClicked(this)>
                     <label class="mr-3 pb-4" for="form-check-label"> Filter by Party</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Republican</label>
+                        <input class="form-check-input" type="checkbox" name="check1" id="republican-checkbox" value="option1"
+                            checked="checked">
+                        <label class="form-check-label" for="republican-checkbox">Republican</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label m-3" for="inlineCheckbox2">Democrat</label>
+                        <input class="form-check-input" type="checkbox" name="check2" id="democrat-checkbox" value="option2"
+                            checked="checked">
+                        <label class="form-check-label m-3" for="democrat-checkbox">Democrat</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label m-3" for="inlineCheckbox3">Independent</label>
+                        <input class="form-check-input" type="checkbox" name="check3" id="independent-checkbox" value="option3"
+                            checked="checked">
+                        <label class="form-check-label m-3" for="independent-checkbox">Independent</label>
                     </div>
                 </div>
-                <div class="checkbox-right col-3 d-flex justify-content-between mt-2 ">
-                    <div>
-                        <label class="m-2" for="filter-state"> Filter by State</label>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle filter-state" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
+                <div class="checkbox-right">
+                    <label for="state">Filter by State:</label>
+                    <select class="form-control" id="state" onchange=stateUpdated(this)>
+                        <option class="allStates" default="selected">All</option>
+                    </select>
 
+                </div>
             </div>
 
             <div class="row">
@@ -148,9 +141,9 @@
 
         <!-- Optional JavaScript -->
 
-        <script src="pro-congress-113-senate.js">
+        <script src="./data/pro-congress-113-senate.js">
         </script>
-        <script src="main.js"></script>
+        <script src="./js/senate.js"></script>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

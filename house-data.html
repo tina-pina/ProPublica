@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
         crossorigin="anonymous">
 
+    <!-- title -->
     <title>House</title>
 </head>
 
 <body>
+
+    <!-- header start -->
     <div class="container-fluid">
         <div class="page-header">
             <div class="row justify-content-md-center w-80">
@@ -26,13 +29,15 @@
                             alt="logo"></p>
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
-                    <p class="text-right"><i class="far fa-envelope"></i><a href="info@tgif.net">info@tgif.net</a></p>
+                    <p class="text-right"><i class="far fa-envelope"></i><a href="mailto:info@tgif.net">info@tgif.net</a></p>
                 </div>
                 <div class="col-1"></div>
-
             </div>
         </div>
     </div>
+    <!-- header end -->
+
+    <!-- navbar start -->
     <div class="container">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,8 +62,15 @@
                 </ul>
             </div>
         </nav>
+    </div>
+    <!-- navber end -->
+
+
+    <div class="container">
 
         <div class="jumbotron mb-0">
+
+            <!-- content start -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-3">
                     <h1>Congressmen</h1>
@@ -76,41 +88,41 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 </div>
             </div>
+            <!-- content end -->
+
+            <!-- checkbox start -->
             <div class="checkbox d-flex justify-content-between">
-                <div class="checkbox-left">
+                <div class="checkbox-left" onclick=filterPartyCheckboxClicked(this)>
                     <label class="mr-3 pb-4" for="form-check-label"> Filter by Party</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Republican</label>
+                        <input class="form-check-input" type="checkbox" id="republican-checkbox" value="option1"
+                            checked="checked">
+                        <label class="form-check-label" for="republican-checkbox">Republican</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label m-3" for="inlineCheckbox2">Democrat</label>
+                        <input class="form-check-input" type="checkbox" id="democrat-checkbox" value="option2" checked="checked">
+                        <label class="form-check-label m-3" for="democrat-checkbox">Democrat</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label m-3" for="inlineCheckbox3">Independent</label>
+                        <input class="form-check-input" type="checkbox" id="independent-checkbox" value="option3"
+                            checked="checked">
+                        <label class="form-check-label m-3" for="independent-checkbox">Independent</label>
                     </div>
                 </div>
-                <div class="checkbox-right col-3 d-flex justify-content-between mt-2 ">
-                    <div>
-                        <label class="m-2" for="filter-state"> Filter by State</label>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle filter-state" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+                <!-- todo1 Use select box instead of drop down menu -->
+                <!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
+                <div class="checkbox-right">
+                    <label for="state">Filter by State:</label>
+                    <select class="form-control" id="state">
+                        <option class="allStates" default="selected">NY</option>
+                        <option>EE</option>
+                        <option>AA</option>
+                    </select>
                 </div>
-
             </div>
+            <!-- checkbox end -->
 
+            <!-- table start -->
             <div class="row">
                 <div class="col-12 table-wrapper-scroll-y">
 
@@ -137,30 +149,29 @@
 
                 </div>
             </div>
-
-
+            <!-- table end -->
         </div>
 
+        <!-- footer start -->
         <div class="navbar bg-light w-100">
             <div class="col">
                 <p class="text-center">&copy;2018 TGIF || All Rights Reserved</p>
             </div>
         </div>
+        <!-- footer end -->
+    </div>
 
+    <!-- Optional JavaScript -->
+    <script src="./data/pro-congress-113-house.js"></script>
+    <script src="./js/house.js"></script>
 
-
-        <!-- Optional JavaScript -->
-
-        <script src="pro-congress-113-house.js"></script>
-        <script src="main1.js"></script>
-
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
