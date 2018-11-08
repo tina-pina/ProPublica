@@ -91,21 +91,19 @@
             <!-- content end -->
 
             <!-- checkbox start -->
-            <div class="checkbox d-flex justify-content-between">
-                <div class="checkbox-left" onclick=filterPartyCheckboxClicked(this)>
+            <div class="checkbox d-flex justify-content-between" onchange=filterAll(this)>
+                <div class="checkbox-left">
                     <label class="mr-3 pb-4" for="form-check-label"> Filter by Party</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="republican-checkbox" value="option1"
-                            checked="checked">
+                        <input class="form-check-input" type="checkbox" id="republican-checkbox" value="R" checked="checked">
                         <label class="form-check-label" for="republican-checkbox">Republican</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="democrat-checkbox" value="option2" checked="checked">
+                        <input class="form-check-input" type="checkbox" id="democrat-checkbox" value="D" checked="checked">
                         <label class="form-check-label m-3" for="democrat-checkbox">Democrat</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="independent-checkbox" value="option3"
-                            checked="checked">
+                        <input class="form-check-input" type="checkbox" id="independent-checkbox" value="I" checked="checked">
                         <label class="form-check-label m-3" for="independent-checkbox">Independent</label>
                     </div>
                 </div>
@@ -114,9 +112,7 @@
                 <div class="checkbox-right">
                     <label for="state">Filter by State:</label>
                     <select class="form-control" id="state">
-                        <option class="allStates" default="selected">NY</option>
-                        <option>EE</option>
-                        <option>AA</option>
+                        <option class="allStates" default="selected">All</option>
                     </select>
                 </div>
             </div>

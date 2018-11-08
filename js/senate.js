@@ -1,3 +1,7 @@
+/*
+    populate data start
+*/
+
 function populateSenateTable() {
   let table = document.getElementById("senate-data");
   let senateBody = document.getElementById("senate-body");
@@ -56,41 +60,8 @@ function populateSenateTable() {
   }
 }
 
-function applyFilter(r, d, i) {
-  let rList = document.querySelectorAll("#senate-data .R");
-  let dList = document.querySelectorAll("#senate-data .D");
-  let iList = document.querySelectorAll("#senate-data .I");
-
-  if (r) {
-    for (let elem of rList) elem.style.display = "table-row";
-  } else {
-    for (let elem of rList) elem.style.display = "none";
-  }
-
-  if (d) {
-    for (let elem of dList) elem.style.display = "table-row";
-  } else {
-    for (let elem of dList) elem.style.display = "none";
-  }
-
-  if (i) {
-    for (let elem of iList) elem.style.display = "table-row";
-  } else {
-    for (let elem of iList) elem.style.display = "none";
-  }
-}
-
-function filterPartyCheckboxClicked(event) {
-  let box1 = document.getElementById("republican-checkbox");
-  let box2 = document.getElementById("democrat-checkbox");
-  let box3 = document.getElementById("independent-checkbox");
-
-  applyFilter(box1.checked, box2.checked, box3.checked);
-}
-
-// create the state Array with the given data
-
 function getDistinctStates() {
+  // create the state Array with the given data
   let statesArray = [];
 
   for (let i = 0; i < data.results[0].num_results; i++) {
@@ -106,9 +77,8 @@ function getDistinctStates() {
   return statesArray;
 }
 
-// create the state array inside the Dom
-
 function appendStatesToSelectBox() {
+  // create the state array inside the Dom
   let allStates = getDistinctStates();
   let form = document.getElementById("state");
 
@@ -123,41 +93,51 @@ function appendStatesToSelectBox() {
   }
 }
 
-//make the event handler work
-
 appendStatesToSelectBox();
-
 populateSenateTable();
+/*
+    populate data end
+*/
 
-// onchange="filterStatesClicked(this.value)
+/*
+    event handler start
+*/
+function filterAll(event) {
+  let republicanCheckbox = document.getElementById("republican-checkbox");
+  let democratCheckbox = document.getElementById("democrat-checkbox");
+  let independentCheckbox = document.getElementById("independent-checkbox");
 
-function stateUpdated(event) {
-  // this is a selected value. this can be "All" or state such as "CA", "NY"
-  let selectedState = event.options[event.selectedIndex].value;
+  let selectedState = document.getElementById("state");
 
-  // Query (get) all the rows with selectedState
-  let targetStates = document.querySelectorAll(
-    `#senate-data .${selectedState}`
-  );
+  let republicanChecked = republicanCheckbox.checked;
+  let democratChecked = democratCheckbox.checked;
+  let independentChecked = independentCheckbox.checked;
+  let selectedStateChecked = selectedState.value;
 
-  // Query (get) all the states
-  let allStates = document.querySelectorAll("#senate-data tr");
+  let allRows = document.querySelectorAll("#senate-data tr");
 
-  // exclude header (start from 1)
-  for (let i = 1; i < allStates.length; i++) {
-    let stateRow = allStates[i];
+  for (let i = 1; i < allRows.length; i++) {
+    let row = allRows[i];
+    let classNameArr = row.className.split(" ");
 
-    // if "All" selected, display everything!
-    if (selectedState === "All") {
-      stateRow.style.display = "table-row";
+    let party = classNameArr[0];
+    let state = classNameArr[1];
 
-      // display only the ones with selected state!
-    } else if (Array.from(targetStates).includes(stateRow)) {
-      stateRow.style.display = "table-row";
-
-      // otherwise, hide it
+    if (selectedStateChecked === "All" || state === selectedStateChecked) {
+      if (republicanChecked && party === "R") {
+        row.style.display = "table-row";
+      } else if (democratChecked && party === "D") {
+        row.style.display = "table-row";
+      } else if (independentChecked && party === "I") {
+        row.style.display = "table-row";
+      } else {
+        row.style.display = "none";
+      }
     } else {
-      stateRow.style.display = "none";
+      row.style.display = "none";
     }
   }
 }
+/*
+    event handler end
+*/

@@ -1,3 +1,7 @@
+/*
+    populate data start
+*/
+
 function populateHouseTable() {
   let houseBody = document.getElementById("house-body");
 
@@ -51,36 +55,80 @@ function populateHouseTable() {
   }
 }
 
-function applyFilter(r, d, i) {
-  let rList = document.querySelectorAll("#house-data .R");
-  let dList = document.querySelectorAll("#house-data .D");
-  let iList = document.querySelectorAll("#house-data .I");
+function getDistinctStates() {
+  // create the state Array with the given data
+  let statesArray = [];
 
-  if (r) {
-    for (let elem of rList) elem.style.display = "table-row";
-  } else {
-    for (let elem of rList) elem.style.display = "none";
+  for (let i = 0; i < data.results[0].num_results; i++) {
+    let state = data.results[0].members[i].state;
+    // 1. check state is in the states list
+    // 2. push state to the states list IF the state is not in the states list!
+    if (!statesArray.includes(state)) {
+      statesArray.push(state);
+    }
   }
-
-  if (d) {
-    for (let elem of dList) elem.style.display = "table-row";
-  } else {
-    for (let elem of dList) elem.style.display = "none";
-  }
-
-  if (i) {
-    for (let elem of iList) elem.style.display = "table-row";
-  } else {
-    for (let elem of iList) elem.style.display = "none";
-  }
+  return statesArray;
 }
 
-function filterPartyCheckboxClicked(event) {
-  let box1 = document.getElementById("republican-checkbox");
-  let box2 = document.getElementById("democrat-checkbox");
-  let box3 = document.getElementById("independent-checkbox");
+// create the state array inside the Dom
+function appendStatesToSelectBox() {
+  let allStates = getDistinctStates();
+  let form = document.getElementById("state");
 
-  applyFilter(box1.checked, box2.checked, box3.checked);
+  for (let state of allStates) {
+    // append state elem to select box dom!
+    let option = document.createElement("option");
+    option.id = "selected";
+    option.innerHTML = state;
+    form.appendChild(option);
+  }
 }
 
 populateHouseTable();
+appendStatesToSelectBox();
+/*
+    populate data end
+*/
+
+/*
+    event handler start
+*/
+function filterAll(event) {
+  let republicanCheckbox = document.getElementById("republican-checkbox");
+  let democratCheckbox = document.getElementById("democrat-checkbox");
+  let independentCheckbox = document.getElementById("independent-checkbox");
+
+  let selectedState = document.getElementById("state");
+
+  let republicanChecked = republicanCheckbox.checked;
+  let democratChecked = democratCheckbox.checked;
+  let independentChecked = independentCheckbox.checked;
+  let selectedStateChecked = selectedState.value;
+
+  let allRows = document.querySelectorAll("#house-data tr");
+
+  for (let i = 1; i < allRows.length; i++) {
+    let row = allRows[i];
+    let classNameArr = row.className.split(" ");
+
+    let party = classNameArr[0];
+    let state = classNameArr[1];
+
+    if (selectedStateChecked === "All" || state === selectedStateChecked) {
+      if (republicanChecked && party === "R") {
+        row.style.display = "table-row";
+      } else if (democratChecked && party === "D") {
+        row.style.display = "table-row";
+      } else if (independentChecked && party === "I") {
+        row.style.display = "table-row";
+      } else {
+        row.style.display = "none";
+      }
+    } else {
+      row.style.display = "none";
+    }
+  }
+}
+/*
+    event handler end
+*/

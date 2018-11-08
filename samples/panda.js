@@ -129,3 +129,63 @@ function ckChange(ckType) {
     }
   }
 }
+
+// function applyFilter(r, d, i) {
+//   let rList = document.querySelectorAll("#house-data .R");
+//   let dList = document.querySelectorAll("#house-data .D");
+//   let iList = document.querySelectorAll("#house-data .I");
+
+//   if (r) {
+//     for (let elem of rList) elem.style.display = "table-row";
+//   } else {
+//     for (let elem of rList) elem.style.display = "none";
+//   }
+
+//   if (d) {
+//     for (let elem of dList) elem.style.display = "table-row";
+//   } else {
+//     for (let elem of dList) elem.style.display = "none";
+//   }
+
+//   if (i) {
+//     for (let elem of iList) elem.style.display = "table-row";
+//   } else {
+//     for (let elem of iList) elem.style.display = "none";
+//   }
+// }
+
+// function filterPartyCheckboxClicked(event) {
+//   let box1 = document.getElementById("republican-checkbox");
+//   let box2 = document.getElementById("democrat-checkbox");
+//   let box3 = document.getElementById("independent-checkbox");
+
+//   applyFilter(box1.checked, box2.checked, box3.checked);
+// }
+// function stateUpdated(event) {
+//   // this is a selected value. this can be "All" or state such as "CA", "NY"
+//   let selectedState = event.options[event.selectedIndex].value;
+
+//   // Query (get) all the rows with selectedState
+//   let targetStates = document.querySelectorAll(`#house-data .${selectedState}`);
+
+//   // Query (get) all the states
+//   let allStates = document.querySelectorAll("#house-data tr");
+
+//   // exclude header (start from 1)
+//   for (let i = 1; i < allStates.length; i++) {
+//     let stateRow = allStates[i];
+
+//     // if "All" selected, display everything!
+//     if (selectedState === "All") {
+//       stateRow.style.display = "table-row";
+
+//       // display only the ones with selected state!
+//     } else if (Array.from(targetStates).includes(stateRow)) {
+//       stateRow.style.display = "table-row";
+
+//       // otherwise, hide it
+//     } else {
+//       stateRow.style.display = "none";
+//     }
+//   }
+// }
