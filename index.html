@@ -14,6 +14,7 @@
         crossorigin="anonymous">
 
     <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -56,12 +57,35 @@
                     </li>
                 </ul>
             </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="attendance-house.html">House</a>
+                            <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="loyalty-house.html">House</a>
+                            <a class="dropdown-item" href="loyalty-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>        
+            </div>
         </nav>
-
-
-
-
-
 
         <div class="jumbotron mb-0">
             <div class="row">
@@ -212,8 +236,8 @@
 
         <!-- Optional JavaScript -->
 
-        <script src="pro-congress-113-house.js"></script>
-        <script src="main1.js"></script>
+        <!-- <script src="pro-congress-113-house.js"></script>
+        <script src="main1.js"></script> -->
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

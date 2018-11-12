@@ -141,3 +141,12 @@ function filterAll(event) {
 /*
     event handler end
 */
+
+//test vue
+
+var app3 = new Vue({
+  el: "#app-3",
+  data: {
+    seen: true
+  }
+});

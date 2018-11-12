@@ -132,3 +132,5 @@ function filterAll(event) {
 /*
     event handler end
 */
+
+//another approach might be to print the rows ..and when you apply filter you delete the rows for example if checkbox is unchecked and then you print them again when the checkbox is needed

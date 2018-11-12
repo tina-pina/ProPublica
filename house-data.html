@@ -15,6 +15,8 @@
 
     <!-- title -->
     <title>House</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -39,7 +41,6 @@
 
     <!-- navbar start -->
     <div class="container">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -60,6 +61,34 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="attendance-house.html">House</a>
+                            <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="loyalty-house.html">House</a>
+                            <a class="dropdown-item" href="loyalty-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>        
             </div>
         </nav>
     </div>
@@ -156,6 +185,10 @@
         </div>
         <!-- footer end -->
     </div>
+
+    <div id="app-3">
+            <span v-if="seen">Now you see me</span>
+          </div>
 
     <!-- Optional JavaScript -->
     <script src="./data/pro-congress-113-house.js"></script>

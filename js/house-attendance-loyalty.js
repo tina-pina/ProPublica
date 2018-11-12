@@ -45,6 +45,10 @@ function averageVotes(partyName, countAll) {
   //iterate over all data to find all party
   for (let i = 0; i < data.results[0].num_results; i++) {
     let party = data.results[0].members[i].party;
+    // let VotesPercentage = data.results[0].members[i].votes_with_party_pct;
+    // if (VotesPercentage === 0) {
+    //   return "0";
+    // }
     // if the party is the specific party
     if (countAll || party === partyName) {
       //loop over party to get the votes if the party is R, D or I

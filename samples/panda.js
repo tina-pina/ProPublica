@@ -189,3 +189,99 @@ function ckChange(ckType) {
 //     }
 //   }
 // }
+
+// -----
+
+// function countMembers(partyName, countAll) {
+//   let count = 0;
+//   for (let i = 0; i < data.results[0].num_results; i++) {
+//     let party = data.results[0].members[i].party;
+//     if (countAll || party === partyName) count++;
+//   }
+//   return count;
+// }
+
+// => instead this is possible;
+
+// function countMembersObj() {
+//   let countObj = {};
+//   for (let i = 0; i < data.results[0].num_results; i++) {
+//     let party = data.results[0].members[i].party;
+//     if (party in countObj) countObj[party]++;
+//     else countObj[party] = 1;
+//   }
+//   return countObj;
+// }
+
+// ------
+// function countNumberMembers(partyName) {
+//   let count = 0;
+//   for (let i = 0; i < data.results[0].num_results; i++) {
+//     let party = data.results[0].members[i].party;
+//     if (party === partyName) count++;
+//   }
+//   return count;
+// }
+
+// function totalCountMembers() {
+//   let republican = countNumberMembers("R");
+//   let democrats = countNumberMembers("D");
+//   let independents = countNumberMembers("I");
+
+//   let sum = republican + democrats + independents;
+//   return sum;
+// }
+
+// instead this for both functions=>
+// function countMembers(partyName, countAll) {
+//   let count = 0;
+//   for (let i = 0; i < data.results[0].num_results; i++) {
+//     let party = data.results[0].members[i].party;
+//     if (countAll || party === partyName) count++;
+//   }
+//   return count;
+// }
+
+// ------------------------------------------------------------------
+// function loyaltyTable(statistics, tableID, statisticsField) {
+//   let senateLoyalBody = document.getElementById(tableID);
+//   if (!senateLoyalBody) return;
+
+//   for (let m of statistics[statisticsField]) {
+//     let row = document.createElement("tr");
+
+//     // first column - Name
+//     let column = document.createElement("td");
+
+//     let firstName = m.first_name;
+//     let middleName = m.middle_name;
+//     let lastName = m.last_name;
+//     if (!middleName) middleName = "";
+
+//     column.innerHTML = firstName + " " + middleName + " " + lastName;
+//     row.appendChild(column);
+
+//     //second column - No. Party Votes
+//     let numberPartyVotes = Math.floor(
+//       (m.votes_with_party_pct * m.total_votes) / 100
+//     );
+//     column = document.createElement("td");
+//     column.innerHTML = numberPartyVotes;
+//     row.appendChild(column);
+
+//     //third column - % Party Votes
+//     column = document.createElement("td");
+//     column.innerHTML = m.votes_with_party_pct;
+//     row.appendChild(column);
+
+//     senateLoyalBody.appendChild(row);
+//   }
+// }
+
+// function loyaltyBottomTable(statistics) {
+//   return loyaltyTable(statistics, "senate-bottom-loyalty", "leastLoyalMembers");
+// }
+
+// function loyaltyTopTable(statistics) {
+//   return loyaltyTable(statistics, "senate-top-loyalty", "mostLoyalMembers");
+// }

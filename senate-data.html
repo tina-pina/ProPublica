@@ -12,11 +12,20 @@
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
         crossorigin="anonymous">
-
+    
     <title>Senate</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    
 </head>
 
 <body>
+    
+       
+        
+    
+    
     <div class="container-fluid">
         <div class="page-header">
             <div class="row justify-content-md-center w-80">
@@ -55,6 +64,34 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="attendance-house.html">House</a>
+                            <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="loyalty-house.html">House</a>
+                            <a class="dropdown-item" href="loyalty-senate.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>        
             </div>
         </nav>
 
@@ -136,13 +173,21 @@
             </div>
         </div>
 
+        <div id="app-3">
+                <span v-if="seen">Now you see me</span>
+              </div>
+       
+
 
 
         <!-- Optional JavaScript -->
 
+       
+
         <script src="./data/pro-congress-113-senate.js">
         </script>
         <script src="./js/senate.js"></script>
+
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
