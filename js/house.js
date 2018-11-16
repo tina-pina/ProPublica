@@ -2,7 +2,30 @@
     populate data start
 */
 
-function populateHouseTable() {
+let url = "https://api.propublica.org/congress/v1/115/house/members.json";
+let header = {
+  "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2"
+};
+
+fetch(url, { headers: header })
+  .then(function(response) {
+    if (response.ok) {
+      console.log("Request succeeded: " + response.statusText);
+      return response.json();
+    }
+
+    throw new Error(response.statusText);
+  })
+  .then(function(json) {
+    populateHouseTable(json);
+    appendStatesToSelectBox(json);
+    console.log(json);
+  })
+  .catch(function(error) {
+    console.log("Request failed: " + error.message);
+  });
+
+function populateHouseTable(data) {
   let houseBody = document.getElementById("house-body");
 
   for (let i = 0; i < data.results[0].num_results; i++) {
@@ -55,14 +78,16 @@ function populateHouseTable() {
   }
 }
 
-function getDistinctStates() {
+function getDistinctStates(data) {
   // create the state Array with the given data
   let statesArray = [];
 
   for (let i = 0; i < data.results[0].num_results; i++) {
     let state = data.results[0].members[i].state;
+
     // 1. check state is in the states list
     // 2. push state to the states list IF the state is not in the states list!
+
     if (!statesArray.includes(state)) {
       statesArray.push(state);
     }
@@ -70,30 +95,26 @@ function getDistinctStates() {
   return statesArray;
 }
 
-// create the state array inside the Dom
-function appendStatesToSelectBox() {
-  let allStates = getDistinctStates();
+function appendStatesToSelectBox(data) {
+  // create the state array inside the Dom
+  let allStates = getDistinctStates(data);
   let form = document.getElementById("state");
 
   for (let state of allStates) {
     // append state elem to select box dom!
     let option = document.createElement("option");
     option.id = "selected";
+
+    // option.addEventListener("onchange", applyFilterState() {});
     option.innerHTML = state;
     form.appendChild(option);
   }
 }
 
-populateHouseTable();
-appendStatesToSelectBox();
-/*
-    populate data end
+/* 
+event handler 
 */
-
-/*
-    event handler start
-*/
-function filterAll(event) {
+function filterAll() {
   let republicanCheckbox = document.getElementById("republican-checkbox");
   let democratCheckbox = document.getElementById("democrat-checkbox");
   let independentCheckbox = document.getElementById("independent-checkbox");
@@ -129,8 +150,3 @@ function filterAll(event) {
     }
   }
 }
-/*
-    event handler end
-*/
-
-//another approach might be to print the rows ..and when you apply filter you delete the rows for example if checkbox is unchecked and then you print them again when the checkbox is needed

@@ -29,7 +29,37 @@ Average of Votes: Republican, Democrat, Independence, All
 Number of members: Republican, Democrat, Independence, All
 */
 
-function countMembers(partyName, countAll) {
+let url = "https://api.propublica.org/congress/v1/115/senate/members.json";
+let header = {
+  "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2"
+};
+
+fetch(url, { headers: header })
+  .then(function(response) {
+    if (response.ok) {
+      console.log("Request succeeded: " + response.statusText);
+      return response.json();
+    }
+
+    throw new Error(response.statusText);
+  })
+  .then(function(json) {
+    console.log(json); // raw data
+
+    let statistics = calculateStatistics(json);
+
+    populateStatisticsTable(statistics);
+    // Attendance tables
+    attendanceBottomTable(statistics);
+    attendanceTopTable(statistics);
+    loyaltyBottomTable(statistics);
+    loyaltyTopTable(statistics);
+  })
+  .catch(function(error) {
+    console.log("Request failed: " + error.message);
+  });
+
+function countMembers(data, partyName, countAll) {
   let count = 0;
   for (let i = 0; i < data.results[0].num_results; i++) {
     let party = data.results[0].members[i].party;
@@ -38,7 +68,7 @@ function countMembers(partyName, countAll) {
   return count;
 }
 
-function averageVotes(partyName, countAll) {
+function averageVotes(data, partyName, countAll) {
   //create empty array for specific party votes
   let votesArray = [];
 
@@ -63,7 +93,7 @@ function averageVotes(partyName, countAll) {
 //Party Loyalty Page for Senate and House
 //calculation for the 10 % percent limit of members;
 
-function get10percent(bottom, field) {
+function get10percent(data, bottom, field) {
   let sortedMembers = data.results[0].members.sort(
     (x, y) => x[field] - y[field]
   );
@@ -91,32 +121,32 @@ function get10percent(bottom, field) {
   return tenPerMembersArr;
 }
 
-function get10percentLoyalty(bottom) {
-  return get10percent(bottom, "votes_with_party_pct");
+function get10percentLoyalty(data, bottom) {
+  return get10percent(data, bottom, "votes_with_party_pct");
 }
 
-function get10percentMissedVotesPercent(bottom) {
-  return get10percent(bottom, "missed_votes_pct");
+function get10percentMissedVotesPercent(data, bottom) {
+  return get10percent(data, bottom, "missed_votes_pct");
 }
 
-function getTop10percentLoyalty() {
-  return get10percentLoyalty(false);
+function getTop10percentLoyalty(data) {
+  return get10percentLoyalty(data, false);
 }
 
-function getButtom10percentLoyalty() {
-  return get10percentLoyalty(true);
+function getButtom10percentLoyalty(data) {
+  return get10percentLoyalty(data, true);
 }
 
-function getTop10percentAttendance() {
-  return get10percentMissedVotesPercent(true);
+function getTop10percentAttendance(data) {
+  return get10percentMissedVotesPercent(data, true);
 }
 
-function getButtom10percentAttendance() {
-  return get10percentMissedVotesPercent(false);
+function getButtom10percentAttendance(data) {
+  return get10percentMissedVotesPercent(data, false);
 }
 
-/* 
-  create first table for loyalty page 
+/*
+  create first table for loyalty page
 */
 function populateStatisticsTable(statistics) {
   let senateLoyalBody = document.getElementById("senate-statistics");
@@ -313,35 +343,35 @@ function attendanceTopTable(statistics) {
   }
 }
 
-let statistics = {
-  // Number of members
-  numberOfDemocrats: countMembers("D", false),
-  numberOfRepublicans: countMembers("R", false),
-  numberOfIndependents: countMembers("I", false),
-  totalNumberOfMembers: countMembers("", true),
+function calculateStatistics(data) {
+  let statistics = {
+    // Number of members
+    numberOfDemocrats: countMembers(data, "D", false),
+    numberOfRepublicans: countMembers(data, "R", false),
+    numberOfIndependents: countMembers(data, "I", false),
+    totalNumberOfMembers: countMembers(data, "", true),
 
-  // Votes Percentage
-  averageVotesDemocrats: Number(averageVotes("D", false).toFixed(2)),
-  averageVotesRepublicans: Number(averageVotes("R", false).toFixed(2)),
-  averageVotesIndependents: Number(averageVotes("I", false).toFixed(2)),
-  averageVotesAll: Number(averageVotes("", true).toFixed(2)),
+    // Votes Percentage
+    averageVotesDemocrats: Number(averageVotes(data, "D", false).toFixed(2)),
+    averageVotesRepublicans: Number(averageVotes(data, "R", false).toFixed(2)),
+    averageVotesIndependents: Number(averageVotes(data, "I", false).toFixed(2)),
+    averageVotesAll: Number(averageVotes(data, "", true).toFixed(2)),
 
-  // Loyalty
-  leastLoyalMembers: getButtom10percentLoyalty(),
-  mostLoyalMembers: getTop10percentLoyalty(),
+    // Loyalty
+    leastLoyalMembers: getButtom10percentLoyalty(data),
+    mostLoyalMembers: getTop10percentLoyalty(data),
 
-  // Attendance
-  leastAttendanceMembers: getButtom10percentAttendance(),
-  mostAttendanceMembers: getTop10percentAttendance()
-};
+    // Attendance
+    leastAttendanceMembers: getButtom10percentAttendance(data),
+    mostAttendanceMembers: getTop10percentAttendance(data)
+  };
+  return statistics;
+}
 
-// Shared table
-populateStatisticsTable(statistics);
+// // Loyalty tables
+// loyaltyBottomTable(statistics);
+// loyaltyTopTable(statistics);
 
-// Loyalty tables
-loyaltyBottomTable(statistics);
-loyaltyTopTable(statistics);
-
-// Attendance tables
-attendanceBottomTable(statistics);
-attendanceTopTable(statistics);
+// // Attendance tables
+// attendanceBottomTable(statistics);
+// attendanceTopTable(statistics);

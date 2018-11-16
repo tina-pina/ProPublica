@@ -1,8 +1,27 @@
-/*
-    populate data start
-*/
+let url = "https://api.propublica.org/congress/v1/115/senate/members.json";
+let header = {
+  "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2"
+};
 
-function populateSenateTable() {
+fetch(url, { headers: header })
+  .then(function(response) {
+    if (response.ok) {
+      console.log("Request succeeded: " + response.statusText);
+      return response.json();
+    }
+
+    throw new Error(response.statusText);
+  })
+  .then(function(json) {
+    populateSenateTable(json);
+    appendStatesToSelectBox(json);
+    console.log(json);
+  })
+  .catch(function(error) {
+    console.log("Request failed: " + error.message);
+  });
+
+function populateSenateTable(data) {
   let table = document.getElementById("senate-data");
   let senateBody = document.getElementById("senate-body");
 
@@ -60,7 +79,7 @@ function populateSenateTable() {
   }
 }
 
-function getDistinctStates() {
+function getDistinctStates(data) {
   // create the state Array with the given data
   let statesArray = [];
 
@@ -77,9 +96,9 @@ function getDistinctStates() {
   return statesArray;
 }
 
-function appendStatesToSelectBox() {
+function appendStatesToSelectBox(data) {
   // create the state array inside the Dom
-  let allStates = getDistinctStates();
+  let allStates = getDistinctStates(data);
   let form = document.getElementById("state");
 
   for (let state of allStates) {
@@ -93,16 +112,7 @@ function appendStatesToSelectBox() {
   }
 }
 
-appendStatesToSelectBox();
-populateSenateTable();
-/*
-    populate data end
-*/
-
-/*
-    event handler start
-*/
-function filterAll(event) {
+function filterAll() {
   let republicanCheckbox = document.getElementById("republican-checkbox");
   let democratCheckbox = document.getElementById("democrat-checkbox");
   let independentCheckbox = document.getElementById("independent-checkbox");
@@ -138,15 +148,3 @@ function filterAll(event) {
     }
   }
 }
-/*
-    event handler end
-*/
-
-//test vue
-
-var app3 = new Vue({
-  el: "#app-3",
-  data: {
-    seen: true
-  }
-});
